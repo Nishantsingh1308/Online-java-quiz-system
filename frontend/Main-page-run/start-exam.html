@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Exam</title>
+    <link rel="stylesheet" href="start-exam.css">
+</head>
+
+<body>
+    <div class="exam-container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Start Your Exam</h1>
+            <div class="timer-container">
+                <p> Time Spent: <span id="timer">00:00:00</span></p>
+            </div>
+        </div>
+
+        <!-- Questions Section -->
+        <div id="questions-container">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+
+
+        <!-- Submit Button -->
+        <div class="submit-container">
+            <button class="submit-btn" id="submit-exam-btn" onclick="submitExam()">Submit Exam</button>
+        </div>
+    </div>
+
+    <script src="start-exam.js"></script>
+</body>
+
+</html>

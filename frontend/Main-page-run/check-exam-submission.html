@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Check Exam Submissions</title>
+    <link rel="stylesheet" href="check-exam-submission.css">
+</head>
+
+<body>
+    <!-- Login Container (Visible initially) -->
+    <div class="login-container" id="login-container">
+        <h2>Admin Login</h2>
+        <form id="admin-login-form" onsubmit="return checkLogin(event)">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Exam Submissions Container (Visible after login) -->
+    <div class="exam-submissions-container" id="exam-container" style="display: none;">
+        <h1>Student Exam Submissions</h1>
+        <div id="student-answers">
+            <!-- Student answers will be dynamically loaded here -->
+        </div>
+        <button onclick="submitMarks()">Submit Marks</button>
+    </div>
+
+    <script src="check-exam-submission.js"></script>
+</body>
+
+</html>

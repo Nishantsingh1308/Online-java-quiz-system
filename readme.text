@@ -1,126 +1,189 @@
-# Online Java Quiz System
+# **Online Java Quiz System - README**
 
-This project is an **Online Java Quiz System** developed as part of the GUVI Java course. The system allows users to take quizzes, records their scores, and maintains basic user accounts. 
+## **Project Overview**
 
-## Table of Contents
-1. Project Overview
-2. Project Structure
-3. Database Schema
-4. Setting Up and Running the Program
-5. Project Dependencies
+The **Online Java Quiz System** is a sophisticated web application designed to facilitate Java quizzes for students and provide a streamlined interface for administrators to manage quizzes, users, and results. The system is designed to be scalable, user-friendly, and secure, enabling seamless interaction for both students and admins.
 
----
+### **Key Features:**
+- **Admin Dashboard:** Secure login for administrators to manage quiz questions, view results, and delete questions.
+- **Student Interface:** Student-friendly interface to log in, take quizzes, view questions dynamically, and submit answers.
+- **Timer Functionality:** A countdown timer runs during the exam, showing students how much time is left to complete the quiz.
+- **Result Calculation:** On submission, the system calculates the score and shows the result.
+- **Database Integration:** All quiz questions, results, and user data are stored and managed via a MySQL database using JDBC connectivity.
+- **Error Handling and Validation:** The system handles errors, such as invalid inputs or login failures, providing an intuitive user experience.
 
-## 1. Project Overview
-The Online Java Quiz System is a Java-based application that provides a quiz platform for users. Users can log in, take a quiz, and view their scores. The system stores user data, quiz questions, and quiz results in a MySQL database.
-
----
-
-## 2. Project Structure
-
-To keep the project organized and manageable, the code is divided into multiple packages and folders. Here’s a detailed breakdown:
-
-**Project Root Directory**  
-- `src/`: The main source directory containing all Java source files.
-  - `com.quizsystem`: The main package containing all other sub-packages and classes.
-
-    - `model/`: Contains model classes representing data entities such as User, Question, and QuizResult.
-      - `User.java`: Represents a user with attributes like `user_id`, `username`, `password`, and `email`.
-      - `Question.java`: Represents a quiz question with attributes like `question_id`, `question_text`, and options.
-      - `QuizResult.java`: Stores quiz result information, including `result_id`, `user_id`, `score`, and `quiz_date`.
-
-    - `dao/`: Contains **Data Access Object (DAO)** classes responsible for interacting with the database.
-      - `UserDAO.java`: Contains methods for creating, reading, updating, and deleting User data.
-      - `QuestionDAO.java`: Contains methods for handling Question data, including fetching quiz questions.
-      - `QuizResultDAO.java`: Manages quiz result data, such as saving scores and fetching user scores.
-
-    - `service/`: Contains classes that implement the core logic and operations for the quiz.
-      - `QuizService.java`: Handles the main quiz logic, including loading questions and calculating scores.
-
-    - `main/`: Contains the main application class to run the program.
-      - `Main.java`: The entry point of the application, which initializes the quiz system and manages user interactions.
-
-- `resources/`: Contains resource files such as configuration files, SQL scripts for database creation, or any external properties files (e.g., `db.properties` for database credentials).
-
-This structure helps organize the code, separate concerns, and enhance readability.
+This project demonstrates advanced knowledge in **Web Development**, **Database Management**, **JDBC** (Java Database Connectivity), and **JavaScript** for frontend functionalities. It serves as a powerful tool for both educational and administrative purposes in academic settings.
 
 ---
 
-## 3. Database Schema
+## **Project Structure**
 
-The database for the Online Java Quiz System uses **MySQL** and consists of three main tables:
+The project has a modular architecture that divides frontend and backend functionality, keeping them well-organized and easy to manage.
 
-1. **User Table**: Stores user information.
-   ```sql
-   CREATE TABLE User (
-       user_id INT PRIMARY KEY AUTO_INCREMENT,
-       username VARCHAR(50),
-       password VARCHAR(50),
-       email VARCHAR(100)
-   );
-   ```
+### **Project Directory Structure:**
 
-2. **Question Table**: Stores quiz questions, options, and the correct answer.
-   ```sql
-   CREATE TABLE Question (
-       question_id INT PRIMARY KEY AUTO_INCREMENT,
-       question_text TEXT,
-       option_a VARCHAR(255),
-       option_b VARCHAR(255),
-       option_c VARCHAR(255),
-       option_d VARCHAR(255),
-       correct_option CHAR(1)
-   );
-   ```
-
-3. **QuizResult Table**: Stores results for each quiz attempt.
-   ```sql
-   CREATE TABLE QuizResult (
-       result_id INT PRIMARY KEY AUTO_INCREMENT,
-       user_id INT,
-       score INT,
-       quiz_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-       FOREIGN KEY (user_id) REFERENCES User(user_id)
-   );
-   ```
-
----
-
-## 4. Setting Up and Running the Program
-
-### Prerequisites
-- **JDK**: Make sure you have JDK 8 or higher installed.
-- **MySQL**: Set up a MySQL database and create the tables as per the schema above.
-- **JDBC Driver**: Include the MySQL JDBC driver in the project’s classpath.
-
-### Steps to Run the Program
-
-1. **Clone or Download the Project**  
-   Download the source code and open it in your preferred Java IDE, such as **IntelliJ IDEA** or **Eclipse**.
-
-2. **Database Configuration**  
-   - Create a **database** in MySQL (e.g., `quiz_db`).
-   - In `DBConnection.java` (or a `db.properties` file in `resources/`), update the database URL, username, and password to match your MySQL configuration:
-     ```java
-     private static final String URL = "jdbc:mysql://localhost:3306/quiz_db";
-     private static final String USER = "yourUsername";
-     private static final String PASSWORD = "yourPassword";
-     ```
-
-3. **Run SQL Scripts to Create Tables**  
-   - Use MySQL Workbench, phpMyAdmin, or the MySQL command line to create the `User`, `Question`, and `QuizResult` tables.
-
-4. **Run the Main Class**  
-   - In your IDE, locate the `Main.java` file in the `com.quizsystem.main` package and run it as a Java application.
-   - The program should prompt you to log in or take a quiz based on the functionality implemented.
+```
+Online-Java-Quiz-System/
+│
+├── database/
+│   └── online_quiz_system.sql       # SQL database schema
+│
+├── db/
+│   └── OnlineQuizDB.java            # JDBC database connection and methods
+│
+├── dao/
+│   ├── UserDAO.java                 # Data Access Object for user data
+│   ├── QuizQuestionDAO.java         # Data Access Object for quiz questions
+│   ├── QuizResultDAO.java           # Data Access Object for quiz results
+│   └── ExamSessionDAO.java          # Data Access Object for exam sessions
+│
+├── model/
+│   ├── User.java                    # User class for both student and admin
+│   ├── QuizQuestion.java            # Quiz Question class for quiz items
+│   ├── QuizResult.java              # Quiz Result class for results
+│   └── ExamSession.java             # Exam Session class to track user progress
+│
+├── web/
+│   ├── home.html                    # Home page (Welcome page)
+│   ├── student-login.html           # Student login page
+│   ├── admin-login.html             # Admin login page
+│   ├── start-exam.html              # Start exam page
+│   ├── view-questions.html          # View all questions (admin page)
+│   └── result.html                  # Display results after exam submission
+│
+├── css/
+│   ├── home.css                     # Home page styling
+│   ├── exam.css                     # Styling for exam pages
+│   └── result.css                   # Styling for result pages
+│
+└── js/
+    ├── home.js                      # JavaScript for home page functionality
+    ├── student.js                   # JavaScript for student interface
+    ├── admin.js                     # JavaScript for admin interface
+    ├── start-exam.js                # JavaScript for managing the exam timer and displaying questions
+    ├── view-questions.js            # JavaScript for managing the view questions (admin)
+    └── result.js                    # JavaScript for managing the exam result page
+```
 
 ---
 
-## 5. Project Dependencies
-- **JDK**: Java Development Kit version 8 or higher.
-- **MySQL**: Database to store quiz data.
-- **JDBC Driver**: Include the MySQL JDBC driver to connect Java with MySQL.
+## **Database Schema**
+
+The **Online Java Quiz System** utilizes a relational database to manage users, quiz questions, quiz results, and sessions. The database schema includes the following tables:
+
+```sql
+-- Users table stores both student and admin information
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    role ENUM('admin', 'student') NOT NULL
+);
+
+-- Quiz Questions table stores all questions, options, and correct answers
+CREATE TABLE quiz_questions (
+    question_id INT AUTO_INCREMENT PRIMARY KEY,
+    question TEXT NOT NULL,
+    option_1 VARCHAR(255) NOT NULL,
+    option_2 VARCHAR(255) NOT NULL,
+    option_3 VARCHAR(255) NOT NULL,
+    option_4 VARCHAR(255) NOT NULL,
+    correct_answer VARCHAR(255) NOT NULL
+);
+
+-- Quiz Results table stores the quiz result for each student
+CREATE TABLE quiz_results (
+    result_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    correct_answers INT NOT NULL,
+    total_questions INT NOT NULL,
+    time_taken BIGINT NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES users(user_id)
+);
+
+-- Exam Sessions table stores information on each student's exam session
+CREATE TABLE exam_sessions (
+    session_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    start_time BIGINT NOT NULL,
+    end_time BIGINT,
+    time_spent BIGINT,
+    FOREIGN KEY (student_id) REFERENCES users(user_id)
+);
+```
+
+---
+
+## **Setting Up the Project**
+
+### **1. Database Setup:**
+- Install **MySQL** on your local machine (if not already installed).
+- Create a new database `online_quiz_system` and import the schema from the provided `online_quiz_system.sql`.
+- Use the **MySQL Workbench** or any other database client to run the SQL commands.
+
+### **2. Import Project Files:**
+- Download or clone the project repository.
+- Ensure that the **`db/`, `dao/`, `model/`, `web/`**, and other folders are correctly organized.
+  
+### **3. Configure Database Connection:**
+- In `OnlineQuizDB.java`, configure the database connection by specifying the correct **DB URL**, **username**, and **password**:
+
+```java
+private static final String DB_URL = "jdbc:mysql://localhost:3306/online_quiz_system";
+private static final String DB_USERNAME = "root";  // Replace with your DB username
+private static final String DB_PASSWORD = "password";  // Replace with your DB password
+```
+
+### **4. Setting Up Frontend Files:**
+- Ensure that **HTML**, **CSS**, and **JavaScript** files are placed correctly in the `web/`, `css/`, and `js/` directories respectively.
+- Ensure the JavaScript files handle actions such as form submissions, timer management, and dynamic content loading.
+
+---
+
+## **How to Run the Program**
+
+1. **Running the Backend:**
+   - Ensure **Java** is installed.
+   - Run **JDBC** classes (e.g., `OnlineQuizDB.java`) to test the connection and perform database operations like user registration, login, etc.
+   - You can also use any IDE like **IntelliJ IDEA** or **Eclipse** to run the Java classes.
+
+2. **Running the Frontend:**
+   - Open **`home.html`** in a web browser to see the homepage.
+   - Follow the login process for **students** or **admins**.
+   - Admins can manage quiz questions, while students can take quizzes and view their results.
+
+---
+
+## **Project Dependencies**
+
+### **Required Tools and Frameworks:**
+- **MySQL**: Used for the database backend.
+- **JDK (Java Development Kit)**: Required for compiling and running Java backend code.
+- **Apache Tomcat** (Optional): If deploying as a web application.
+- **JDBC**: Java Database Connectivity for interacting with the MySQL database.
+  
+### **Libraries Used:**
+- **MySQL Connector/J**: JDBC driver for MySQL (available at [MySQL official site](https://dev.mysql.com/downloads/connector/j/)).
+  
+### **IDE Recommendations:**
+- **Eclipse** or **IntelliJ IDEA** for Java development.
+- **Visual Studio Code** or **Sublime Text** for frontend HTML, CSS, and JavaScript development.
+
+---
+
+## **Additional Details for Showcase:**
+
+### **Why This Project Stands Out:**
+- **Scalability**: The application is designed to scale, making it suitable for deployment in institutions or online learning platforms.
+- **Advanced Features**: Integration of features like dynamic question display, timer, and real-time result calculations enhances the user experience.
+- **Database Integration**: Effective use of MySQL database and JDBC for managing user data, quiz questions, and results.
+- **User-Friendliness**: The clean and intuitive design of the interface ensures that students and admins can use the application without any technical knowledge.
+- **Security Considerations**: Passwords are stored securely using encryption (e.g., hashing in the future for enhanced security).
+
+---
+
+This **README** provides all the essential details needed to understand, set up, and run the **Online Java Quiz System** project. It also highlights why this project is a robust and sophisticated solution for online quiz management.
+
+**End of README**
 
 --- 
-
-With this structure and setup, the Online Java Quiz System should run smoothly and provide the intended functionality for users.
