@@ -1,5 +1,3 @@
-package java;
-
 public class Student extends User {
     private String studentId;
 

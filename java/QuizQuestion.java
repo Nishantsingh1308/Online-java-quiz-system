@@ -1,12 +1,12 @@
-package java;
+import java.util.List;
 
 public class QuizQuestion {
     private int id;
     private String question;
-    private String[] options;
+    private List<String> options;  // Changed from array to List for flexibility
     private String correctAnswer;
 
-    public QuizQuestion(int id, String question, String[] options, String correctAnswer) {
+    public QuizQuestion(int id, String question, List<String> options, String correctAnswer) {
         this.id = id;
         this.question = question;
         this.options = options;
@@ -30,11 +30,11 @@ public class QuizQuestion {
         this.question = question;
     }
 
-    public String[] getOptions() {
+    public List<String> getOptions() {
         return options;
     }
 
-    public void setOptions(String[] options) {
+    public void setOptions(List<String> options) {
         this.options = options;
     }
 
