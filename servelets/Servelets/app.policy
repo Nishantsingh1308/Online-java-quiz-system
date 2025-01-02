@@ -1,0 +1,11 @@
+grant {
+    // Allow connecting to the database
+    permission java.net.SocketPermission "localhost:3306", "connect,resolve";
+
+    // Allow reading/writing configuration and log files
+    permission java.io.FilePermission "logs/application.log", "read,write,delete";
+    permission java.io.FilePermission "config/*", "read";
+
+    // Allow starting embedded server
+    permission java.net.SocketPermission "localhost:8080", "listen,resolve";
+};
