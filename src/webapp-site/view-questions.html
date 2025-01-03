@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View All Questions</title>
+    <link rel="stylesheet" href="view-all-questions.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>All Questions</h1>
+
+        <!-- Displaying the list of questions -->
+        <div id="questions-list">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+
+        <!-- Button to delete all questions -->
+        <button id="delete-all-btn" onclick="deleteAllQuestions()">Delete All Questions</button>
+
+        <!-- Button to go back to the admin dashboard -->
+        <button class="btn back-btn" onclick="location.href='admin-dashboard.html'">Back to Dashboard</button>
+    </div>
+
+    <script src="view-question.js"></script>
+</body>
+
+</html>
