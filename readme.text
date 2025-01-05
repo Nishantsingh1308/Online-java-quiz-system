@@ -28,32 +28,38 @@ The project is organized to separate key components for efficient management and
 Project Directory Layout
 
 Online-Java-Quiz-System/
-├── serverfiles/
-│   ├── jgradfiles/
-│   │   ├── *.jsp                     # All JSP files
-│   │   ├── build.gradle              # Gradle build script
-│   │   └── settings.gradle           # Gradle settings script
-│   ├── xml&propertiesfiles/
-│   │   ├── web.xml                   # Web application descriptor
-│   │   ├── db.properties             # Database configuration
-│   │   └── logback.xml               # Logging configuration
-│   ├── src/
-│       ├── main/
-│       │   ├── java/
-│       │   │   └── com.example/
-│       │   │       ├── LoginServlet.java      # Login servlet
-│       │   │       ├── RegistrationServlet.java  # Registration servlet
-│       │   │       ├── ProfileServlet.java    # Profile servlet
-│       │   │       ├── DashboardServlet.java  # Admin dashboard servlet
-│       │   │       └── LogoutServlet.java     # Logout servlet
-│       │   ├── resources/
-│       │   │   └── static/                  # Static files (CSS, JS, images)
-│       │   └── webapp/
-│       │       └── index.jsp               # Main JSP file
-│   ├── database/
-│       └── online_quiz_system.sql          # SQL schema and initial data
-├── pom.xml                                  # Maven build configuration
-└── README.txt                               # Project documentation
+├── .vscode/
+│   └── settings.json
+├── Server/
+│   ├── .properties/
+│   │   └── *.properties
+│   ├── .settings/
+│   │   └── * (all setting files)
+│   └── Tomcat v10.1 server at localhost/
+│       └── * (policy and XML files)
+├── src/
+│   ├── Main/
+│   │   └── *.java (main Java files)
+│   ├── ServiceDAO/
+│   │   ├── service/
+│   │   │   └── *.java (service Java files)
+│   │   └── DAO/
+│   │       └── *.java (DAO files for main Java files)
+│   ├── Database/
+│   │   └── * (database-related files)
+│   ├── Servelets/
+│   │   └── *.java (servlet files)
+│   ├── WebApp-Site/
+│   │   ├── *.html (HTML files)
+│   │   ├── *.css (CSS files)
+│   │   ├── *.js (JavaScript files)
+│   │   └── JSP/
+│   │       ├── *.jsp (JSP files with JSTL and EL)
+│   │       └── * (additional JSP-related files)
+├── .gitattributes
+├── .project
+├── JavaQuizSystemPPT.pdf
+└── README.text
 
 Database Schema
 
